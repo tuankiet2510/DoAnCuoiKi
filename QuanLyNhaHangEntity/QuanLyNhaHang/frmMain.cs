@@ -42,5 +42,10 @@ namespace QuanLyNhaHang
         {
             AddControls(new categoryForm());
         }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            AddControls(new productForm());
+        }
     }
 }

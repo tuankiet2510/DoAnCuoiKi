@@ -25,7 +25,6 @@ namespace QuanLyNhaHang
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmCategoryAdd frm = new frmCategoryAdd();
-            frm.lblAdd.Text = "Category Add";
             frm.txtID.ReadOnly = false;
             frm.ShowDialog();
             LoadData();
@@ -54,7 +53,6 @@ namespace QuanLyNhaHang
                     frmCategoryAdd frm = new frmCategoryAdd();
                     frm.txtID.Text = dgvCategory.CurrentRow.Cells["dgvID"].Value.ToString();
                     frm.txtName.Text = dgvCategory.CurrentRow.Cells["dgvName"].Value.ToString();
-                    frm.lblAdd.Text = "Category Edit";
                     frm.ShowDialog();
                     LoadData();
                 }

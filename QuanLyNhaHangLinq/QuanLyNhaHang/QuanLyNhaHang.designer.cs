@@ -33,6 +33,9 @@ namespace QuanLyNhaHang
     partial void InsertDANHMUC(DANHMUC instance);
     partial void UpdateDANHMUC(DANHMUC instance);
     partial void DeleteDANHMUC(DANHMUC instance);
+    partial void InsertSANPHAM(SANPHAM instance);
+    partial void UpdateSANPHAM(SANPHAM instance);
+    partial void DeleteSANPHAM(SANPHAM instance);
     partial void InsertTAIKHOAN(TAIKHOAN instance);
     partial void UpdateTAIKHOAN(TAIKHOAN instance);
     partial void DeleteTAIKHOAN(TAIKHOAN instance);
@@ -76,6 +79,14 @@ namespace QuanLyNhaHang
 			}
 		}
 		
+		public System.Data.Linq.Table<SANPHAM> SANPHAMs
+		{
+			get
+			{
+				return this.GetTable<SANPHAM>();
+			}
+		}
+		
 		public System.Data.Linq.Table<TAIKHOAN> TAIKHOANs
 		{
 			get
@@ -95,6 +106,8 @@ namespace QuanLyNhaHang
 		
 		private string _TenDM;
 		
+		private EntitySet<SANPHAM> _SANPHAMs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -107,6 +120,7 @@ namespace QuanLyNhaHang
 		
 		public DANHMUC()
 		{
+			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
 			OnCreated();
 		}
 		
@@ -146,6 +160,254 @@ namespace QuanLyNhaHang
 					this._TenDM = value;
 					this.SendPropertyChanged("TenDM");
 					this.OnTenDMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DANHMUC_SANPHAM", Storage="_SANPHAMs", ThisKey="MaDM", OtherKey="MaLoaiSP")]
+		public EntitySet<SANPHAM> SANPHAMs
+		{
+			get
+			{
+				return this._SANPHAMs;
+			}
+			set
+			{
+				this._SANPHAMs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.DANHMUC = this;
+		}
+		
+		private void detach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.DANHMUC = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SANPHAM")]
+	public partial class SANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MaSP;
+		
+		private string _TenSP;
+		
+		private string _MaLoaiSP;
+		
+		private string _TenLoaiSP;
+		
+		private System.Nullable<double> _GiaSP;
+		
+		private System.Data.Linq.Binary _AnhSP;
+		
+		private EntityRef<DANHMUC> _DANHMUC;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaSPChanging(string value);
+    partial void OnMaSPChanged();
+    partial void OnTenSPChanging(string value);
+    partial void OnTenSPChanged();
+    partial void OnMaLoaiSPChanging(string value);
+    partial void OnMaLoaiSPChanged();
+    partial void OnTenLoaiSPChanging(string value);
+    partial void OnTenLoaiSPChanged();
+    partial void OnGiaSPChanging(System.Nullable<double> value);
+    partial void OnGiaSPChanged();
+    partial void OnAnhSPChanging(System.Data.Linq.Binary value);
+    partial void OnAnhSPChanged();
+    #endregion
+		
+		public SANPHAM()
+		{
+			this._DANHMUC = default(EntityRef<DANHMUC>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSP", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaSP
+		{
+			get
+			{
+				return this._MaSP;
+			}
+			set
+			{
+				if ((this._MaSP != value))
+				{
+					this.OnMaSPChanging(value);
+					this.SendPropertyChanging();
+					this._MaSP = value;
+					this.SendPropertyChanged("MaSP");
+					this.OnMaSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenSP", DbType="VarChar(50)")]
+		public string TenSP
+		{
+			get
+			{
+				return this._TenSP;
+			}
+			set
+			{
+				if ((this._TenSP != value))
+				{
+					this.OnTenSPChanging(value);
+					this.SendPropertyChanging();
+					this._TenSP = value;
+					this.SendPropertyChanged("TenSP");
+					this.OnTenSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLoaiSP", DbType="VarChar(50)")]
+		public string MaLoaiSP
+		{
+			get
+			{
+				return this._MaLoaiSP;
+			}
+			set
+			{
+				if ((this._MaLoaiSP != value))
+				{
+					if (this._DANHMUC.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaLoaiSPChanging(value);
+					this.SendPropertyChanging();
+					this._MaLoaiSP = value;
+					this.SendPropertyChanged("MaLoaiSP");
+					this.OnMaLoaiSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLoaiSP", DbType="VarChar(50)")]
+		public string TenLoaiSP
+		{
+			get
+			{
+				return this._TenLoaiSP;
+			}
+			set
+			{
+				if ((this._TenLoaiSP != value))
+				{
+					this.OnTenLoaiSPChanging(value);
+					this.SendPropertyChanging();
+					this._TenLoaiSP = value;
+					this.SendPropertyChanged("TenLoaiSP");
+					this.OnTenLoaiSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaSP", DbType="Float")]
+		public System.Nullable<double> GiaSP
+		{
+			get
+			{
+				return this._GiaSP;
+			}
+			set
+			{
+				if ((this._GiaSP != value))
+				{
+					this.OnGiaSPChanging(value);
+					this.SendPropertyChanging();
+					this._GiaSP = value;
+					this.SendPropertyChanged("GiaSP");
+					this.OnGiaSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnhSP", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary AnhSP
+		{
+			get
+			{
+				return this._AnhSP;
+			}
+			set
+			{
+				if ((this._AnhSP != value))
+				{
+					this.OnAnhSPChanging(value);
+					this.SendPropertyChanging();
+					this._AnhSP = value;
+					this.SendPropertyChanged("AnhSP");
+					this.OnAnhSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DANHMUC_SANPHAM", Storage="_DANHMUC", ThisKey="MaLoaiSP", OtherKey="MaDM", IsForeignKey=true)]
+		public DANHMUC DANHMUC
+		{
+			get
+			{
+				return this._DANHMUC.Entity;
+			}
+			set
+			{
+				DANHMUC previousValue = this._DANHMUC.Entity;
+				if (((previousValue != value) 
+							|| (this._DANHMUC.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DANHMUC.Entity = null;
+						previousValue.SANPHAMs.Remove(this);
+					}
+					this._DANHMUC.Entity = value;
+					if ((value != null))
+					{
+						value.SANPHAMs.Add(this);
+						this._MaLoaiSP = value.MaDM;
+					}
+					else
+					{
+						this._MaLoaiSP = default(string);
+					}
+					this.SendPropertyChanged("DANHMUC");
 				}
 			}
 		}

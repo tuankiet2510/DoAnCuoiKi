@@ -31,11 +31,8 @@ namespace QuanLyNhaHang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dtTaiKhoan = new DataTable();
-            dtTaiKhoan.Clear();
-            DataSet ds = dbTK.DangNhap(txtUser.Text,txtPass.Text);
-            dtTaiKhoan = ds.Tables[0];
-            if (dtTaiKhoan.Rows.Count > 0) 
+            
+            if (dbTK.DangNhap(txtUser.Text,txtPass.Text)) 
             {
                 this.Hide();
                 frmMain frm = new frmMain();

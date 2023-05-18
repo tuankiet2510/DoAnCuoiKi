@@ -196,6 +196,7 @@
             this.btnProduct.Size = new System.Drawing.Size(211, 45);
             this.btnProduct.TabIndex = 2;
             this.btnProduct.Text = "Product";
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // btnHome
             // 

@@ -18,6 +18,35 @@ namespace QuanLyNhaHang.BS_layer
         {
             return db.ExecuteQueryDataSet("select * from DanhMuc", CommandType.Text);
         }
+        public List<string> LayDanhSachMaDanhMuc()
+        {
+
+            List<string> danhSachMaDM = new List<string>();
+
+            DataSet ds = db.ExecuteQueryDataSet("SELECT MaDM FROM DanhMuc", CommandType.Text);
+            DataTable dtDM = ds.Tables[0];
+
+            foreach (DataRow row in dtDM.Rows)
+            {
+                string maDM = row["MaDM"].ToString();
+                danhSachMaDM.Add(maDM);
+            }
+
+            return danhSachMaDM;
+
+        }
+        public string LayTenDanhMuc(string MaDM)
+        {
+            DataSet ds = db.ExecuteQueryDataSet("select TenDM from DanhMuc where MaDM='" + MaDM + "'", CommandType.Text);
+            DataTable dtDM = ds.Tables[0];
+            if (dtDM.Rows.Count > 0)
+            {
+                DataRow row = dtDM.Rows[0];
+                string tenDanhMuc = row["TenDM"].ToString();
+                return tenDanhMuc;
+            }
+            return string.Empty;
+        }
         public DataSet TimKiemDanhMuc(string str)
         {
             return db.ExecuteQueryDataSet("select * from DanhMuc where TenDM like '%" + str + "%' ", CommandType.Text);

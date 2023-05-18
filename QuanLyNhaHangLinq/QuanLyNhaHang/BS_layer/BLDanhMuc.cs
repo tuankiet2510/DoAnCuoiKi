@@ -57,5 +57,19 @@ namespace QuanLyNhaHang.BS_layer
             }
             return true;
         }
+        public List<string> LayDanhSachMaDanhMuc()
+        {
+            QuanLyNhaHangDataContext qlNH = new QuanLyNhaHangDataContext();
+            var danhMucList = qlNH.DANHMUCs.Select(dm => dm.MaDM).ToList();
+            return danhMucList;
+        }
+        public string LayTenDanhMuc(string MaDM)
+        {
+            QuanLyNhaHangDataContext qlNH = new QuanLyNhaHangDataContext();
+            var danhMuc = (from dm in qlNH.DANHMUCs
+                           where dm.MaDM == MaDM
+                           select dm.TenDM).FirstOrDefault();
+            return danhMuc;
+        }
     }
 }

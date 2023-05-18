@@ -15,8 +15,6 @@ namespace QuanLyNhaHang
     public partial class categoryForm : Form
     {
         DataTable dtDM = null;
-        // Khai báo biến kiểm tra việc Thêm hay Sửa dữ liệu
-        bool Them;
         string err;
         BLDanhMuc dbDM = new BLDanhMuc();
         public categoryForm()
@@ -27,7 +25,6 @@ namespace QuanLyNhaHang
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmCategoryAdd frm = new frmCategoryAdd();
-            frm.lblAdd.Text = "Category Add";
             frm.txtID.ReadOnly = false;
             frm.ShowDialog();
             LoadData();
@@ -44,9 +41,6 @@ namespace QuanLyNhaHang
                 dgvCategory.DataSource = dtDM;
                 // Thay đổi độ rộng cột
                 dgvCategory.AutoResizeColumns();
-                // Xóa trống các đối tượng trong Panel
-                //
-                //dgvCategory_CellClick(null, null);
             }
             catch (SqlException)
             {
@@ -64,7 +58,6 @@ namespace QuanLyNhaHang
                     frmCategoryAdd frm = new frmCategoryAdd();
                     frm.txtID.Text = dgvCategory.CurrentRow.Cells["dgvID"].Value.ToString();
                     frm.txtName.Text = dgvCategory.CurrentRow.Cells["dgvName"].Value.ToString();
-                    frm.lblAdd.Text = "Category Edit";
                     frm.ShowDialog();
                     LoadData();
                 }
@@ -103,9 +96,7 @@ namespace QuanLyNhaHang
                 dgvCategory.DataSource = dtDM;
                 // Thay đổi độ rộng cột
                 dgvCategory.AutoResizeColumns();
-                // Xóa trống các đối tượng trong Panel
-                //
-                //dgvCategory_CellClick(null, null);
+               
             }
             catch (SqlException)
             {

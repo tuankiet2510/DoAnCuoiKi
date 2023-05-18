@@ -31,10 +31,14 @@ namespace QuanLyNhaHang.BS_layer
             string sqlString = "Delete From TaiKhoan Where TenTaiKhoan='" + TenTaiKhoan + "'";
             return db.MyExecuteNonQuery(sqlString, CommandType.Text, ref err);
         }
-        public DataSet DangNhap(string TenTaiKhoan, string MatKhau)
+        public bool DangNhap(string TenTaiKhoan, string MatKhau)
         {
             string sqlString = "select * from TaiKhoan where TenTaiKhoan = '" + TenTaiKhoan + "' and MatKhau = '" + MatKhau + "' ";
-            return db.ExecuteQueryDataSet(sqlString, CommandType.Text);
+            DataTable dtTaiKhoan = new DataTable();
+            DataSet ds = db.ExecuteQueryDataSet(sqlString, CommandType.Text);
+            dtTaiKhoan = ds.Tables[0];
+            if (dtTaiKhoan.Rows.Count > 0) return true;
+            else return false;
         }
 
         //public bool CapNhatTaiKhoan(string TenTaiKhoan, string MatKhau, string MaNV, int CapDoQuyen, ref string err)

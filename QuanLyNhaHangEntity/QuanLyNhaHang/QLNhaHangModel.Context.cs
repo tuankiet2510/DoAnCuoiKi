@@ -26,6 +26,7 @@ namespace QuanLyNhaHang
         }
     
         public virtual DbSet<DANHMUC> DANHMUCs { get; set; }
+        public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
     }
 }

@@ -111,9 +111,9 @@
             this.lblAdd.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdd.Location = new System.Drawing.Point(227, 51);
             this.lblAdd.Name = "lblAdd";
-            this.lblAdd.Size = new System.Drawing.Size(155, 31);
+            this.lblAdd.Size = new System.Drawing.Size(172, 31);
             this.lblAdd.TabIndex = 1;
-            this.lblAdd.Text = "Category Add";
+            this.lblAdd.Text = "Category Detail";
             // 
             // lblID
             // 
@@ -144,9 +144,9 @@
             this.txtName.PasswordChar = '\0';
             this.txtName.PlaceholderText = "";
             this.txtName.SelectedText = "";
+            this.txtName.SelectionStart = "".Length;
             this.txtName.Size = new System.Drawing.Size(278, 67);
             this.txtName.TabIndex = 10;
-            this.txtName.SelectionStart = txtName.Text.Length;
             // 
             // lblName
             // 
@@ -178,9 +178,9 @@
             this.txtID.PlaceholderText = "";
             this.txtID.ReadOnly = true;
             this.txtID.SelectedText = "";
+            this.txtID.SelectionStart = "".Length;
             this.txtID.Size = new System.Drawing.Size(278, 67);
             this.txtID.TabIndex = 11;
-            this.txtID.SelectionStart = txtID.Text.Length;
             // 
             // guna2PictureBox1
             // 

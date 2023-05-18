@@ -16,8 +16,6 @@ namespace QuanLyNhaHang
     public partial class frmCategoryAdd : Form
     {
         DataTable dtDM = null;
-        // Khai báo biến kiểm tra việc Thêm hay Sửa dữ liệu
-        bool Them;
         string err;
         BLDanhMuc dbDM = new BLDanhMuc();
         public frmCategoryAdd()
@@ -36,7 +34,6 @@ namespace QuanLyNhaHang
             {               
                 
                 dbDM.CapNhatDanhMuc(txtID.Text,txtName.Text, ref err);
-                // Load lại dữ liệu trên DataGridView
                 MessageBox.Show("Đã sửa xong!");
             }
             else

@@ -4,6 +4,18 @@
     <Type Name="DANHMUC">
       <Column Name="MaDM" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenDM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="DANHMUC_SANPHAM" Member="SANPHAMs" ThisKey="MaDM" OtherKey="MaLoaiSP" Type="SANPHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
+    <Type Name="SANPHAM">
+      <Column Name="MaSP" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoaiSP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TenLoaiSP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GiaSP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AnhSP" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="DANHMUC_SANPHAM" Member="DANHMUC" ThisKey="MaLoaiSP" OtherKey="MaDM" Type="DANHMUC" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TAIKHOAN" Member="TAIKHOANs">

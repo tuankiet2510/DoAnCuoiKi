@@ -7,6 +7,17 @@
     <Property Name="MaDM" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="TenDM" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenSP" Type="varchar" MaxLength="50" />
+    <Property Name="MaLoaiSP" Type="varchar" MaxLength="50" />
+    <Property Name="TenLoaiSP" Type="varchar" MaxLength="50" />
+    <Property Name="GiaSP" Type="float" />
+    <Property Name="AnhSP" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="TAIKHOAN">
     <Key>
       <PropertyRef Name="TenTaiKhoan" />
@@ -16,8 +27,25 @@
     <Property Name="MaNV" Type="varchar" MaxLength="10" />
     <Property Name="CapDoQuyen" Type="int" />
   </EntityType>
+  <Association Name="FK__SANPHAM__AnhSP__5441852A">
+    <End Role="DANHMUC" Type="Self.DANHMUC" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DANHMUC">
+        <PropertyRef Name="MaDM" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QuanLyNhaHangModelStoreContainer">
     <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__SANPHAM__AnhSP__5441852A" Association="Self.FK__SANPHAM__AnhSP__5441852A">
+      <End Role="DANHMUC" EntitySet="DANHMUC" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
